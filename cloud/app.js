@@ -16,6 +16,10 @@ app.get("/", function(req, res){
   var nonce = req.query.nonce;
   var echostr = req.query.echostr;
   var strArr = [WEBCHAT_TOKEN, timestamp, nonce];
+  console.log("signature: " + signature);
+  console.log("timestamp: " + timestamp);
+  console.log("nonce: " + nonce);
+  console.log("strArr: " + strArr);
   
   var joinedStr = strArr.sort().join("");
   var sha1 = crypto.createHash("sha1");
