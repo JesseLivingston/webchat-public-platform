@@ -1,6 +1,6 @@
 // 在Cloud code里初始化express框架
 var express = require('express');
-var crypto = require("crypto");
+var sha1 = require("sha1");
 var app = express();
 var WEBCHAT_TOKEN = "ariestiger";
 
@@ -11,19 +11,19 @@ app.use(express.bodyParser());    // 读取请求body的中间件
 
 //使用express路由API服务/hello的http GET请求
 app.get("/", function(req, res){
-  var signature = req.param("signature");
-  var timestamp = req.param("timestamp");
-  var nonce = req.param("nonce");
-  var echostr = req.param("echostr");
+  var signature = req.query.signature;
+  var timestamp = req.query.timestamp;
+  var nonce = req.query.nonce;
+  var echostr = req.query.echostr;
   var strArr = [WEBCHAT_TOKEN, timestamp, nonce];
   
   var joinedStr = strArr.sort().join("");
-  var sha1Crypto = crypto.createHash("sha1").update(joinedStr).digest("hex");
+  var sha1Crypto = sha1(joinedStr);
   res.writeHead({"Content-Type": "text/plain"});
   if(sha1Crypto == signature){  
     res.write(echostr);
   }else{
-    res.write(timestamp);
+    res.write(WEBCHAT_TOKEN);
   }
   res.end();
 });
