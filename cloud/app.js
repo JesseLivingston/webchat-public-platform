@@ -18,7 +18,9 @@ app.get("/", function(req, res){
   var strArr = [WEBCHAT_TOKEN, timestamp, nonce];
   
   var joinedStr = strArr.sort().join("");
-  var sha1Crypto = crypto.createHash("sha1").update(joinedStr).digest("hex");
+  var sha1 = crypto.createHash("sha1");
+  sha1.update(joinedStr);
+  var sha1Crypto = sha1.digest("hex");
   console.log("crypted: " + sha1Crypto);
   console.log("request: " + echostr);
   res.writeHead({"Content-Type": "text/plain"});
