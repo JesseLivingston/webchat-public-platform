@@ -27,13 +27,13 @@ app.get("/", function(req, res){
   var sha1Crypto = sha1.digest("hex");
   console.log("crypted: " + sha1Crypto);
   console.log("request: " + echostr);
-  res.writeHead({"Content-Type": "text/plain"});
+  //res.writeHead({"Content-Type": "text/plain"});
   if(sha1Crypto == signature){  
-    res.write(echostr);
+    res.send(200, echostr);
   }else{
-    res.write(WEBCHAT_TOKEN);
+    res.send(200, WEBCHAT_TOKEN);
   }
-  res.end();
+  //res.end();
 });
 
 app.get('/hello', function(req, res) {
