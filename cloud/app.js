@@ -1,6 +1,6 @@
 // 在Cloud code里初始化express框架
 var express = require('express');
-var sha1 = require("sha1");
+var crypto = require("crypto");
 var app = express();
 var WEBCHAT_TOKEN = "ariestiger";
 
@@ -18,7 +18,9 @@ app.get("/", function(req, res){
   var strArr = [WEBCHAT_TOKEN, timestamp, nonce];
   
   var joinedStr = strArr.sort().join("");
-  var sha1Crypto = sha1(joinedStr);
+  var sha1Crypto = crypto.createHash("sha1").update(joinedStr).digest("hex");
+  console.log("crypted: " + sha1Crypto);
+  console.log("request: " + echostr);
   res.writeHead({"Content-Type": "text/plain"});
   if(sha1Crypto == signature){  
     res.write(echostr);
