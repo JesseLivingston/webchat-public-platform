@@ -1,11 +1,11 @@
-// require("cloud/app.js");
+require("cloud/app.js");
 // Use AV.Cloud.define to define as many cloud functions as you want.
 // For example:
-/*AV.Cloud.define("hello", function(request, response) {
+AV.Cloud.define("hello", function(request, response) {
   response.success("Hello world!");
-});*/
+});
 
-var express = require("express");
+// var express = require("express");
 var webot = require("weixin-robot");
 
 var app = express();
