@@ -2,7 +2,7 @@
 var express = require('express');
 var crypto = require("crypto");
 var app = express();
-var WEBCHAT_TOKEN = "634c5e6fe5904fd0b052d62a247dbb07";
+var WEBCHAT_TOKEN = "ariestiger";
 
 // App全局配置
 app.set('views','cloud/views');   //设置模板目录
