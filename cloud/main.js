@@ -23,5 +23,5 @@ webot.set("subscribe", {
 
 webot.watch(app, {
 	token: "634c5e6fe5904fd0b052d62a247dbb07",
-	path: "wechatapi"
+	path: "/wechatapi"
 })
