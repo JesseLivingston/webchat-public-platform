@@ -5,7 +5,7 @@ AV.Cloud.define("hello", function(request, response) {
   response.success("Hello world!");
 });
 
-// var express = require("express");
+var express = require("express");
 var webot = require("weixin-robot");
 
 var app = express();
